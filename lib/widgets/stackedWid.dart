@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oceanfocused/screens/size_config.dart';
 import 'package:oceanfocused/widgets/timer.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -10,6 +11,7 @@ class StackedWid extends StatefulWidget {
 class _StackedWidState extends State<StackedWid> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Stack(
       children: <Widget>[
         Container(
