@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:oceanfocused/screens/homepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+SharedPreferences sp;
+void main() async {
+  await GetStorage.init();
   runApp(MyApp());
 }
 
