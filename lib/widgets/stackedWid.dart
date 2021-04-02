@@ -48,13 +48,15 @@ class _StackedWidState extends State<StackedWid> {
   ),
     ),
     Center(
-      child: Column(
-        children: [
-          SizedBox(height:200),
-          TimerContainer(),
-          SizedBox(height:50),
-          
-        ],
+      child: SingleChildScrollView(
+              child: Column(
+          children: [
+            SizedBox(height:20),
+            TimerContainer(),
+            SizedBox(height:50),
+            
+          ],
+        ),
       ),
     ),
       ],
