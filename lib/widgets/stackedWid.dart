@@ -15,7 +15,7 @@ class _StackedWidState extends State<StackedWid> {
     return Stack(
       children: <Widget>[
         Container(
-      height: MediaQuery. of(context). size. height - 30,
+      height: MediaQuery. of(context). size. height,
   decoration: BoxDecoration(
     gradient: LinearGradient(
       tileMode: TileMode.mirror,

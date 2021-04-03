@@ -1,5 +1,5 @@
 name: oceanfocused
-description: A new Flutter project.
+description: An app which is designed to focus on a particular task with help of the pomodoro tecchnique and beats to listen while working.
 
 publish_to: 'none' 
 
@@ -28,7 +28,8 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/LOGO.png"
+  image_path_android: "assets/images/logo.png"
+  image_path_ios: "assets/images/logo.png"
 
 flutter:
   uses-material-design: true
@@ -36,7 +37,7 @@ flutter:
   assets:
     - assets/audio/breakstart.mp3
     - assets/audio/focusstart.mp3
-  #   - images/a_dot_burr.jpeg
+    - assets/images/logo.png
   #   - images/a_dot_ham.jpeg
 
   # fonts:

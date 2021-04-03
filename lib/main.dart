@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitUp,
       ]);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Ocean Focused',
       home: HomeScreen(),
     );
