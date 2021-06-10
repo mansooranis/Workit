@@ -2,6 +2,7 @@ name: oceanfocused
 description: An app which is designed to focus on a particular task with help of the pomodoro tecchnique and beats to listen while working.
 
 publish_to: 'none' 
+version: 2.0.0+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -38,6 +39,10 @@ flutter:
     - assets/audio/breakstart.mp3
     - assets/audio/focusstart.mp3
     - assets/images/logo.png
+    - assets/images/homepage.jpg
+    - assets/images/studypage.jpg
+    - assets/images/sleep.jpg
+    - assets/images/relax.jpg
   #   - images/a_dot_ham.jpeg
 
   # fonts:
