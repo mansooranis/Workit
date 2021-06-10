@@ -9,16 +9,17 @@ import 'package:oceanfocused/screens/size_config.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:just_audio/just_audio.dart';
 
-class TimerContainer extends StatefulWidget {
+class RelaxTimerContainer extends StatefulWidget {
   @override
-  _TimerContainerState createState() => _TimerContainerState();
+  _RelaxTimerContainerState createState() => _RelaxTimerContainerState();
 }
 
-class _TimerContainerState extends State<TimerContainer> {
+class _RelaxTimerContainerState extends State<RelaxTimerContainer> {
   final data = GetStorage();
   final assetsAudioPlayer = aud.AssetsAudioPlayer();
   final assetsAudioPlayer2 = aud.AssetsAudioPlayer();
   bool ispressed =false;
+  bool ispressed2 =false;
   bool isstartedff = false;
   bool isstartedf = false;
   int _seconds = 0;
@@ -76,17 +77,20 @@ class _TimerContainerState extends State<TimerContainer> {
   }
 
   playstopmusic(){
-    if (ispressed){
-      return Icons.stop;
+    if (ispressed2){
+      player.pause();
+      return Icons.pause;
     }else{
-      return Icons.play_circle_fill;
+      player.play();
+      return Icons.play_circle_fill_rounded;
     }
   }
-      String songname = "Lofi Music to Study/Relax";
-    String songimageurl = 'https://cdn.pixabay.com/photo/2017/10/12/20/15/photoshop-2845779_960_720.jpg';
-    String songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/%5BMP3FY%5D+No+Copyright+Lofi+Hip+Hop+2020+_+Chill+Lofi+Beats+Playlist+_+Japanese+Lofi+Music+%2314.mp3';
+      String songname = "Music for Relax (1)";
+    String songimageurl = 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80';
+    String songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/relax/Relaxing+Music+for+Stress+Relief.+Calm+Music+for+Meditation%2C+Sleep%2C+Relax%2C+Healing+Therapy%2C+Spa.mp3';
     playlofimusic()async{
     var duration = await player.setUrl(songurl);
+    
     player.play();
   }
 
@@ -146,19 +150,16 @@ class _TimerContainerState extends State<TimerContainer> {
     data.write("_bseconds", 0);
     data.write("_fminutes", 25);
     data.write("_fseconds", 0);
-    data.write("songimageurl", 'https://cdn.pixabay.com/photo/2017/10/12/20/15/photoshop-2845779_960_720.jpg');
+    data.write("songimageurl", 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80');
     data.write("songpath", 'assets/audio/music1.mp3');
-    data.write("songurl",'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/%5BMP3FY%5D+No+Copyright+Lofi+Hip+Hop+2020+_+Chill+Lofi+Beats+Playlist+_+Japanese+Lofi+Music+%2314.mp3');
-
-
+    data.write("songurl",'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/relax/Relaxing+Music+for+Stress+Relief.+Calm+Music+for+Meditation%2C+Sleep%2C+Relax%2C+Healing+Therapy%2C+Spa.mp3');
     super.initState();
   }
 
-  
   @override
   bool isSwitched = false;
   Widget build(BuildContext context) {
-
+    SizeConfig().init(context);
 
     return Stack(
       children: [Center(
@@ -174,7 +175,9 @@ class _TimerContainerState extends State<TimerContainer> {
                       "${f.format(_minutes)} : ${f.format(_seconds)}",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 48,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 30,
+                        decoration: TextDecoration.none
                       ),
                     ),
                   ],
@@ -469,7 +472,12 @@ class _TimerContainerState extends State<TimerContainer> {
                             SizedBox(width:getProportionateScreenWidth(170),
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                              child: Text(songname, textAlign: TextAlign.center,),
+                              child: Text(songname, textAlign: TextAlign.center,style: TextStyle(
+                                  fontWeight: FontWeight.w300, 
+                                  fontSize: 10, 
+                                  color: Colors.white,
+                                  decoration: TextDecoration.none
+                                      )),
                             ),
                             )
                           ],
@@ -481,13 +489,19 @@ class _TimerContainerState extends State<TimerContainer> {
                 ),
                 decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(18),
-                color: Colors.blueGrey[100]
+                borderRadius:  BorderRadius.circular(18.0),
+                  color: Color(0xBB043949),
               ),
               ), 
             ),
             Center(
               child: Container(
+                height: getProportionateScreenHeight(50),
+                width: getProportionateScreenWidth(300),
+                decoration:  BoxDecoration(
+                  borderRadius:  BorderRadius.circular(18.0),
+                  
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -500,12 +514,15 @@ class _TimerContainerState extends State<TimerContainer> {
                             onPressed: () {
                               setState(() {
                                    playlofimusic();
+                                   
                               });
                               },
                             
                             child: Icon(
+                              
                             playstopmusic(),
                             size: 25.0,
+                            color: Colors.white,
                             ),
                             
           ),
@@ -522,6 +539,7 @@ class _TimerContainerState extends State<TimerContainer> {
                             },
                             child: Icon(
                             Icons.stop,
+                            color: Colors.white,
                             size: 25.0,
                             ),
                 ),
@@ -607,7 +625,7 @@ class _TimerContainerState extends State<TimerContainer> {
                                                         isExpanded: true,
                                                         iconSize: 30.0,
                                                         style: TextStyle(color: Colors.blue),
-                                                        items: ['Lofi Music to Study/Relax', 'Ocean Waves', 'Rainfall'].map(
+                                                        items: ['Music for Relax (1)', 'Music for Relax (2)', 'Music for Relax (3)'].map(
                                                           (val) {
                                                             return DropdownMenuItem<String>(
                                                               value: val,
@@ -619,20 +637,20 @@ class _TimerContainerState extends State<TimerContainer> {
                                                           WidgetsBinding.instance.addPostFrameCallback((_) => setState(
                                                             () {
                                                               _dropDownValue = val;
-                                                              if (_dropDownValue == 'Lofi Music to Study/Relax'){
+                                                              if (_dropDownValue == 'Music for Relax (1)'){
                                                                 
                                                                 songname = _dropDownValue;
-                                                                songimageurl = 'https://cdn.pixabay.com/photo/2017/10/12/20/15/photoshop-2845779_960_720.jpg';
-                                                                songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/%5BMP3FY%5D+No+Copyright+Lofi+Hip+Hop+2020+_+Chill+Lofi+Beats+Playlist+_+Japanese+Lofi+Music+%2314.mp3';
-                                                              } else if (_dropDownValue == 'Ocean Waves'){
+                                                                songimageurl = 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80';
+                                                                songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/relax/Relaxing+Music+for+Stress+Relief.+Calm+Music+for+Meditation%2C+Sleep%2C+Relax%2C+Healing+Therapy%2C+Spa.mp3';
+                                                              } else if (_dropDownValue == 'Music for Relax (2)'){
                                                                 
                                                                 songname = _dropDownValue;
-                                                                songimageurl = 'https://images.unsplash.com/photo-1562059392-096320bccc7e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80';
-                                                                songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/Royalty+Free+Meditation+Music+Relax+Music+Ocean+Waves+Nature+Sounds+%26+Calm+Piano.mp3';
-                                                              }else if (_dropDownValue == 'Rainfall'){
+                                                                songimageurl = 'https://images.unsplash.com/photo-1474022650697-7624c32312fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
+                                                                songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/relax/Relaxing+Music+for+Stress+Relief.+Calm+Music+for+Sleep+Meditation%2C+Healing+Therapy%2C+Study%2C+Spa%2C+Yoga.mp3';
+                                                              }else if (_dropDownValue == 'Music for Relax (3)'){
                                                                 songname = _dropDownValue;
-                                                                songimageurl = 'https://images.unsplash.com/photo-1512511708753-3150cd2ec8ee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80';
-                                                                songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/30+MINUTES+Gentle+Rain+at+Night%2C+Rain+Sounds+for+Sleep%2C+Insomnia%2C+Relaxing%2C+Meditation%2C+Yoga%2C+St.mp3';
+                                                                songimageurl = 'https://images.unsplash.com/photo-1444044205806-38f3ed106c10?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
+                                                                songurl = 'https://oceanfocused.s3.eu-west-3.amazonaws.com/assets/audio/relax/Together+We+Thrive+(calm+piano+music%2C+relax%2C+dream%2C+for+studying%2C+focus%2C+create).mp3';
                                                               }
                                                             },
                                                           ));
@@ -674,6 +692,7 @@ class _TimerContainerState extends State<TimerContainer> {
                             },
                             child: Icon(
                               Icons.settings,
+                              color: Colors.white,
                               size: 25.0,
                             ),
                           ),
