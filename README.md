@@ -1,19 +1,6 @@
+# Workit: stay focused
 An app which is designed to focus on a particular task with help of the pomodoro technique and beats to listen while working.
-		<table>
-			<th>
-				<tr>
-          <img src="https://user-images.githubusercontent.com/67307757/121509728-ffc2e580-c9f7-11eb-865a-71ad8f0b7ce6.png" width = "234" height = "504">
-        </tr>
-				<tr>
-          <img src="https://user-images.githubusercontent.com/67307757/121509822-123d1f00-c9f8-11eb-813b-669956e56ef1.png" width = "234" height = "504">
-        </tr>
-				<tr>
-          <img src="https://user-images.githubusercontent.com/67307757/121509846-18330000-c9f8-11eb-82ec-fd37140c46c4.png" width = "234" height = "504">
-        </tr>
-				<tr>
-          <img src="https://user-images.githubusercontent.com/67307757/121509864-1c5f1d80-c9f8-11eb-9dda-31a9e11895cc.png" width = "234" height = "504">
-        </tr>
-			</th>
-		</table>
+
+<img src="https://github.com/mansooranis/Workit/blob/master/assets/images/Group%201.png" width = "534" height = "504">
 
 All 3 pages have various music which serves the purpose of the mood choosen.
